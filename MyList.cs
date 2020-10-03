@@ -84,7 +84,7 @@ namespace lab_1__sem_5_
         {
             if (size != 0)
             {
-                Array.Clear(items, 0, size);
+                items = new T[0];
                 size = 0;
                 eventHelper.Invoke(this, new ListEventArgs("List is cleared\n"));
             }
