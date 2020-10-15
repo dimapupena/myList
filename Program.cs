@@ -2,7 +2,7 @@
 using System.Numerics;
 using System.Windows;
 
-namespace lab_1__sem_5_
+namespace MyListSpace
 {
     class Program
     {

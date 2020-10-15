@@ -6,7 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 
-namespace lab_1__sem_5_
+namespace MyListSpace
 {
     class MyList<T> : IList<T>
     {
