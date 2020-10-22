@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MyListSpace
 {
-    class MyList<T> : IList<T>
+     public class MyList<T> : IList<T>
     {
         private T[] items = new T[0];
         private int size = 0;
@@ -96,9 +96,9 @@ namespace MyListSpace
 
         public bool Contains(T item)
         {
-            if (item is null)
+            if (item != null)
             {
-                if (Array.Find(items, element => element.Equals(item)) != null)
+                if (Array.FindIndex(items, element => element.Equals(item)) >= 0)
                 {
                     eventHelper.Invoke(this, new ListEventArgs("List find this element\n"));
                     return true;
@@ -164,7 +164,7 @@ namespace MyListSpace
                     }
                 }
 
-                Array.Copy(copy, items, size);
+                items = copy;
                 size += 1;
                 eventHelper.Invoke(this, new ListEventArgs("Insert was done\n"));
             }
@@ -178,15 +178,15 @@ namespace MyListSpace
         {
             if (Contains(item))
             {
-                int index = IndexOf(item);
-                size--;
-                if (index < size && index != null)
+                for (int i = 0; i < size; i++)
                 {
-                    Array.Copy(items, index + 1, items, index, size);
-                    items[size] = default(T);
+                    if (items[i].Equals(item))
+                    {
+                        this.RemoveAt(i);
+                        return true;
+                    }
                 }
-                eventHelper.Invoke(this, new ListEventArgs("removed\n"));
-                return true;
+                return false;
              }
             else
             {
